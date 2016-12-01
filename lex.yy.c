@@ -452,7 +452,7 @@ static yyconst flex_int16_t yy_def[44] =
 
 static yyconst flex_uint16_t yy_nxt[89] =
     {   0,
-        4,    5,    6,    7,    7,    4,    8,    9,    9,    9,
+        4,    5,    6,    7,    7,    5,    8,    9,    9,    9,
         9,   10,   11,    9,    9,    9,   12,    9,    9,    9,
        13,   14,    9,   15,   16,   27,   17,   18,   35,   26,
        17,   27,   25,   40,   33,   34,   41,   39,   33,   40,
@@ -490,10 +490,11 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "cclang.l"
-#line 2 "cclang.l"
-    #include "definiciones.h"
-#line 497 "lex.yy.c"
+#line 1 "ccALex.l"
+#line 2 "ccALex.l"
+    #include "estructura.h"
+    #include "ccASint.tab.h"
+#line 498 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -711,10 +712,10 @@ YY_DECL
 		}
 
 	{
-#line 14 "cclang.l"
+#line 15 "ccALex.l"
 
 
-#line 718 "lex.yy.c"
+#line 719 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -773,95 +774,95 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 16 "cclang.l"
-/* Enteros */ printf("Entero: %d\n",NUMEROENTERO);/* return(NUMEROENTERO); */
+#line 17 "ccALex.l"
+/* Enteros */ return(NUM);
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 17 "cclang.l"
-/* Científico */ printf("Científico: %d\n",NUMEROCIENTIFICO);/* return(NUMEROCIENTIFICO);*/
+#line 18 "ccALex.l"
+/* Científico */ /* return(NUM); */
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 18 "cclang.l"
-/* Decimal */ printf("Decimal: %d\n",NUMERODECIMAL);/* return(NUMERODECIMAL);*/
+#line 19 "ccALex.l"
+/* Decimal */ return(NUM);
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 19 "cclang.l"
-/* Decimal Científico */ printf("Científico: %d\n",NUMEROCIENTIFICO);/* return(NUMEROCIENTIFICO);*/
+#line 20 "ccALex.l"
+/* Decimal Científico */ /* return(NUMEROCIENTIFICO);*/
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 20 "cclang.l"
-/* Función seno */ printf("Seno: %d\n",FUNCION); /* return(FUNCION);*/
+#line 21 "ccALex.l"
+/* Función seno */  return(FNCT);
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 21 "cclang.l"
-/* Función coseno */ printf("Coseno: %d\n",FUNCION); /* return(FUNCION);*/
+#line 22 "ccALex.l"
+/* Función coseno */ return(FNCT);
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 22 "cclang.l"
-/* Función tangente */ printf("Tangente: %d\n",FUNCION); /* return(FUNCION);*/
+#line 23 "ccALex.l"
+/* Función tangente */ return(FNCT);
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 23 "cclang.l"
-/* Función arcoseno */ printf("Arcoseno: %d\n",FUNCION); /* return(FUNCION);*/
+#line 24 "ccALex.l"
+/* Función arcoseno */ return(FNCT);
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 24 "cclang.l"
-/* Función arcocoseno */ printf("Arcocoseno: %d\n",FUNCION); /* return(FUNCION);*/
+#line 25 "ccALex.l"
+/* Función arcocoseno */ return(FNCT);
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 25 "cclang.l"
-/* Función arcotangente */ printf("Arcotangente: %d\n",FUNCION); /* return(FUNCION);*/
+#line 26 "ccALex.l"
+/* Función arcotangente */ return(FNCT);
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 26 "cclang.l"
-/* Función logaritmo */ printf("Logaritmo: %d\n",FUNCION); /* return(FUNCION);*/
+#line 27 "ccALex.l"
+/* Función logaritmo */ return(FNCT);
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 27 "cclang.l"
-/* Función exponencial */ printf("Exponencial: %d\n",FUNCION); /* return(FUNCION);*/
+#line 28 "ccALex.l"
+/* Función exponencial */ return(FNCT);
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 28 "cclang.l"
-/* Identificador */ printf("Variable: %d\n",VARIABLE); /* return(VARIABLE);*/
+#line 29 "ccALex.l"
+/* Identificador */ return(VAR);
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 29 "cclang.l"
-/*TOKEN Simple*/ printf("Operador: %d\n",(int) yytext[0]);/* return((int) yytext[0]); */ 
+#line 30 "ccALex.l"
+/*TOKEN Simple*/ return((int) yytext[0]);
 	YY_BREAK
 case 15:
 /* rule 15 can match eol */
 YY_RULE_SETUP
-#line 30 "cclang.l"
-/* Salto de línea*/ printf("Salto de línea\n");
+#line 31 "ccALex.l"
+/* Salto de línea*/ 
+	YY_BREAK
+case YY_STATE_EOF(INITIAL):
+#line 32 "ccALex.l"
+
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 31 "cclang.l"
-/* Simbolos que no se tienen que contemplar */ printf("Caracter despreciable\n");
-	YY_BREAK
-case YY_STATE_EOF(INITIAL):
-#line 32 "cclang.l"
-
+#line 33 "ccALex.l"
+/* Simbolos que no se tienen que contemplar */
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 34 "cclang.l"
+#line 35 "ccALex.l"
 ECHO;
 	YY_BREAK
-#line 865 "lex.yy.c"
+#line 866 "lex.yy.c"
 
 	case YY_END_OF_BUFFER:
 		{
@@ -1860,10 +1861,6 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 34 "cclang.l"
+#line 35 "ccALex.l"
 
 
-
-main(){
-    yylex();
-}

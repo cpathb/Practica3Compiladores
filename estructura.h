@@ -1,59 +1,35 @@
-#include <stdlib.h>
-#include <string.h>
-#include <math.h>
+typedef double (*func_t) (double); // Tipo Función
 
-typedef double (*func_t) (double);
-
-struct symrec {
-    char *name;
-    int type;    
+struct symrec { // Tipo de datos que se emplearán en la estructura
+    char *name; // Nombre
+    int type; // Tipo: VAR o FNCT
     union {
-        double var;      
-        func_t fnctptr;
+        double var; // Campo para almacenar el valor de una Variable (solo en VAR) 
+        func_t fnctptr; // Campo para almacenar el puntero a una función (Solo en FNCT)
     } value;
-    struct symrec *next;
+    char constant; // Campo para definir si es constante 'y' o se puede modificar 'n'
+    struct symrec *next; // Campo que enlaza con el siguiente dato de la estructura
 };
 
 typedef struct symrec symrec;
 
 extern symrec *sym_table;
 
-symrec *putsym (char const *, int);
+struct init_functions{ // Tipo de datos que se emplearán en la estructura para las funciones 
+    char const *function_name;
+    double (*fnct) (double);
+};
+
+struct init_constants{ // Tipo de datos que se emplearán en la estructura para las constantes
+    char const *constant_name;
+    double value;
+};
+
+// Declaración de funciones
+void inicializarTablaSimbolos();
+void destruirTablaSimbolos();
+void reiniciarTablaSimbolos();
+void imprimirVariables();
+void imprimirFunciones();
+symrec * putsym (char const *sym_name, int sym_type, char sym_const);
 symrec *getsym (char const *);
-
-symrec * putsym (char const *sym_name, int sym_type) {
-    symrec *ptr = (symrec *) malloc (sizeof (symrec));
-    ptr->name = (char *) malloc (strlen (sym_name) + 1);
-    strcpy (ptr->name,sym_name);
-    ptr->type = sym_type;
-    ptr->value.var = 0;
-    ptr->next = (struct symrec *)sym_table;
-    sym_table = ptr;
-    return ptr;
-}
-
-symrec * getsym (char const *sym_name) {
-    symrec *ptr;
-    for (ptr = sym_table; ptr != (symrec *) 0;
-        ptr = (symrec *)ptr->next)
-    if (strcmp (ptr->name, sym_name) == 0)
-        return ptr;
-    return 0;
-}
-
-struct init {
-        char const *fname;
-        double (*fnct) (double);
-    };
-
-    struct init const arith_fncts[] = {
-        { "atan", atan  },
-        { "cos",  cos   },
-        { "exp",  exp   },
-        { "ln",   log   },
-        { "sin",  sin   },
-        { "sqrt", sqrt  },
-        { 0, 0 },
-    };
-
-    symrec *sym_table;

@@ -32,17 +32,11 @@ VARIABLE            "vars"|"VARS"
 FUNCION             "funcs"|"FUNCS"
 REINICIAR           "reset"|"RESET"
 TOKENSIMPLE         [\+\-\*\/\=\(\)\;\^]
+FUNCIONES           "sin"|"cos"|"tan"|"sinh"|"cosh"|"tanh"|"log"|"exp"
 
 %%
 
-"sin" /* Función seno */  return FNCT;
-"cos" /* Función coseno */ return FNCT;
-"tan" /* Función tangente */ return FNCT;
-"sinh" /* Función arcoseno */ return FNCT;
-"cosh" /* Función arcocoseno */ return FNCT;
-"tanh" /* Función arcotangente */ return FNCT;
-"log" /* Función logaritmo */ return FNCT;
-"exp" /* Función exponencial */ return FNCT;
+{FUNCIONES} /* Funciónes aritméticas */ return FNCT;
 {AYUDA} /* Comando de ayuda */ {
     ayuda();
     BEGIN(INITIAL);

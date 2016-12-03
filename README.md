@@ -39,9 +39,9 @@ utilizar el siguiente enlace para acceder a un interprete online:
 Creación de una calculadora multifunción que permite la interacción en linea de comandos, asi como ejecutar ficheros con secuencias de expresiones de cálculo matemático.
 
 Esta calculadora soportará:
-- Los operadores matemáticos básicos (+,-,*,/).
+- Los operadores matemáticos básicos (+,-,*,/,^).
 - Funciones propias de una calculadora científica (sin(),cos(),tan(),log(),exp(),…).
-- Identificara "pi" como el numero π.
+- Identificara "pi" como el numero π y "e" como la constante de Euler.
 - Las operaciones y funciones deberán poder realizarse tanto sobre números enteros como reales.
 
 Para la realización de esta calculadora multifunción se ha decidido que se realizará una etapa de análisis léxico empleando **[flex](https://github.com/westes/flex)** y una etapa de análisis sintáctico empleando **[bison](https://www.gnu.org/software/bison/)**. En la etapa de análisis sintáctico es necesario añadirle aquellas acciones semánticas que permitan realizar las operaciones descritas.

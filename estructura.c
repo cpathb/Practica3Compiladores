@@ -6,20 +6,22 @@
 #include "ccASint.tab.h"
 
 struct init_functions const arith_functions[] ={
-    { "atan", atan  },
+    { "sin",  sin   },
     { "cos",  cos   },
+    { "tan",  tan   },
+    { "asin", asin  },
+    { "acos", acos  },
+    { "atan", atan  },
     { "exp",  exp   },
     { "ln",   log   },
-    { "sin",  sin   },
     { "sqrt", sqrt  },
-    { 0, 0          },
+    { 0,      0     },
 };
-
 
 struct init_constants const math_constants[] ={
     { "pi", M_PI    },
-    { "e",  M_E     },
-    { 0,    0       },
+    { "e" ,  M_E    },
+    { 0   ,    0    },
 };
 
 symrec *sym_table;
@@ -52,7 +54,7 @@ void reiniciarTablaSimbolos(){
 void imprimirVariables(){
     symrec *s=sym_table;
     printf("Variables utilizadas:\n");
-    while(s->next != NULL){
+    while(s != NULL){
         if(s->name != NULL && s->type == VAR){
             printf("\t %s = %g\n", s->name, s->value.var);
         }
@@ -64,9 +66,9 @@ void imprimirVariables(){
 void imprimirFunciones(){
     symrec *s=sym_table;
     printf("Funciones disponibles:\n");
-    while(s->next != NULL){
+    while(s != NULL){
         if(s->name != NULL && s->type == FNCT){
-            printf("\t %s", s->name);
+            printf("\t %s\n", s->name);
         }
         s=s->next;
     }

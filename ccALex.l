@@ -9,7 +9,7 @@
         printf("help\nHELP\n\t/*Función que muestra la ayuda por pantalla.*/\nload ruta\nLOAD ruta\n\t/*Función que carga un fichero y lo ejecuta en el programa.*/\nvars\nVARS\n\t/*Función que muestra las variables de la tabla de símbolos./*\nfuncs\nFUNCS\n\t/*Función que muestra las funciones de la tabla de símbolos.*/\nreset\nRESET\n\t/*Función que reinicia la tabla de símbolos a sus valores por defecto.*/\nexit\nEXIT\n\t/*Función que ciera el programa.*/\n");
         printf("*****************************OPERADORES*******************************\n");
         printf("+\n\t/*Operador Suma*/\n-\n\t/*Operador Resta*/\n*\n\t/*Operador Producto*/\n/\n\t/*Operador División*/\n^\n\t/*Operador Exponenciación*/\n=\n\t/*Operador Asignación*/\n");
-        printf("**********************************************************************\n");
+        printf("**********************************************************************\n\n");
     }
 
     symrec *s;
@@ -32,7 +32,7 @@ VARIABLE            "vars"|"VARS"
 FUNCION             "funcs"|"FUNCS"
 REINICIAR           "reset"|"RESET"
 TOKENSIMPLE         [\+\-\*\/\=\(\)\;\^]
-FUNCIONES           "sin"|"cos"|"tan"|"sinh"|"cosh"|"tanh"|"log"|"exp"
+FUNCIONES           "sin"|"cos"|"tan"|"asin"|"acos"|"atan"|"ln"|"exp"|"sqrt"
 
 %%
 

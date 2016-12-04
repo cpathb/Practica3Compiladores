@@ -6,8 +6,8 @@
 int main( int argc, const char* argv[] ){
     inicializarTablaSimbolos(); // inicializamos la "tabla de simbolos"
     yyin = stdin; // Definimos la entrada de flex como la entrada del sistema
-    printf("Iniciando \"Complex Calculator\"...\n\tPuede obtener ayuda usando el comando \"help\"o \"HELP\"\n");
-    while(!feof(yyin)){
+    printf("Iniciando \"Complex Calculator\"...\n\tPuede obtener ayuda usando el comando \"help\"o \"HELP\"\n\n");
+    while(1){
         yyparse(); // Lanzamos la ejecución del analizador sintáctico
     }
 }

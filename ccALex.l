@@ -24,25 +24,26 @@ CIENTIFICO          {ENTERO}[eE][+-]?{ENTERO}
 DECIMAL             {ENTERO}"."{ENTERO}
 DECIMALCIENTIFICO   {DECIMAL}[eE][+-]?{ENTERO}
 IDENTIFICADOR       [_a-zA-Z][_a-zA-Z0-9]*
+TOKENSIMPLE         [\+\-\*\/\=\(\)\;\^]
+NOMBREFICHERO       [a-zA-Z0-9]([a-zA-Z0-9])*
+EXTENSION           ([a-zA-Z])*
+RUTA                {NOMBREFICHERO}"."?{EXTENSION}
+CARGA               "load "|"LOAD "
 AYUDA               "HELP"|"help"
-RUTA                [[:alpha:]/\-_]+[.?[[:alpha:]]+]?
-CARGA               "load "|"LOAD "RUTA
 SALIR               "exit"|"EXIT"
 VARIABLE            "vars"|"VARS"
 FUNCION             "funcs"|"FUNCS"
 REINICIAR           "reset"|"RESET"
-TOKENSIMPLE         [\+\-\*\/\=\(\)\;\^]
-FUNCIONES           "sin"|"cos"|"tan"|"asin"|"acos"|"atan"|"ln"|"exp"|"sqrt"
+FUNCIONES           "sin"|"cos"|"tan"|"asin"|"acos"|"atan"|"ln"|"sqrt"
 
 %%
 
-{FUNCIONES} /* Funciónes aritméticas */ return FNCT;
 {AYUDA} /* Comando de ayuda */ {
     ayuda();
     BEGIN(INITIAL);
 }
 
-{CARGA} /* Comando de carga de fichero */ {
+{CARGA}{RUTA} /* Comando de carga de fichero */ {
     FILE* fp = fopen(yytext+5, "r+"); /* Leemos el fichero */
     if(!fp){ /* Comprobamos la incorrecta apertura del fichero */
         printf("Error cargando el fichero\n"); /* Cambiar por gestion errores */
@@ -76,6 +77,12 @@ FUNCIONES           "sin"|"cos"|"tan"|"asin"|"acos"|"atan"|"ln"|"exp"|"sqrt"
     BEGIN(INITIAL);
 }
 
+{FUNCIONES} /* Funciónes aritméticas */ {
+    s = getsym(yytext); /* Intentamos obtener de la tabla de símbolos la variable */
+    yylval.FNCT = s; /* Introducimos el valor*/
+    return s->type;
+}
+
 {ENTERO} /* Enteros */ {
     yylval.NUM = atof(yytext);
     return NUM;
@@ -98,7 +105,7 @@ FUNCIONES           "sin"|"cos"|"tan"|"asin"|"acos"|"atan"|"ln"|"exp"|"sqrt"
 }
 
 {IDENTIFICADOR} /* Identificador */ {
-     s = getsym(yytext); /* Intentamos obtener de la tabla de símbolos la variable */
+    s = getsym(yytext); /* Intentamos obtener de la tabla de símbolos la variable */
     if(s == 0){ /* Si no está en la tabla... */
         s = putsym(yytext, VAR, 'n'); /* Introducimos la variable en la tabla de símbolos*/
     }
@@ -109,7 +116,6 @@ FUNCIONES           "sin"|"cos"|"tan"|"asin"|"acos"|"atan"|"ln"|"exp"|"sqrt"
 {TOKENSIMPLE} /*TOKEN Simple*/ return yytext[0] ;
 
 \n /* Salto de linea */ return '\n';
-[\t\r\b\f] /* Simbolos que no se tienen que contemplar */
 <<EOF>> {
     fclose(yyin);
     yyin=stdin;
@@ -117,4 +123,5 @@ FUNCIONES           "sin"|"cos"|"tan"|"asin"|"acos"|"atan"|"ln"|"exp"|"sqrt"
     BEGIN(INITIAL);
     return '\n';
 }
+[ \t\r\b\f] /* Simbolos que no se tienen que contemplar */
 %%

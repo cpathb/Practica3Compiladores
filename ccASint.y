@@ -14,6 +14,7 @@
 %token <double>  NUM
 %token <symrec*> VAR FNCT
 %token EXIT
+%token UNEXPECTED
 %type <double> exp
 
 /* Precedencia de operadores*/
@@ -33,7 +34,11 @@ input:  /* cadena vacia */
 line: '\n'
     | exp '\n'
     | exp ';' '\n'  { printf("\t%.10g\n",$1); }
-    | EXIT '\n'     { exit(0); }
+    | EXIT '\n'     { 
+         destruirTablaSimbolos(); /* Destruimos la tabla de Simbolos antes de salir */
+         imprimirVariables();
+         exit(0); 
+    }
 ;
 
 exp: NUM                 { $$ = $1; }
@@ -59,7 +64,7 @@ exp: NUM                 { $$ = $1; }
     | exp '-' exp        { $$ = $1 - $3; }
     | exp '*' exp        { $$ = $1 * $3; }
     | exp '/' exp        {
-        if(1 != 0){
+        if($3 != 0){
             $$ = $1 / $3;
         }
         else{
@@ -68,7 +73,7 @@ exp: NUM                 { $$ = $1; }
         }
     }
     | '-' exp  %prec NEG { 
-        if(1 != 0){
+        if($2 != 0){
             $$ = -$2;
         }
         else{ /* Si es cero no se niega el resultado */

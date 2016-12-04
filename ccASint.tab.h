@@ -49,7 +49,8 @@ extern int yydebug;
     VAR = 259,
     FNCT = 260,
     EXIT = 261,
-    NEG = 262
+    UNEXPECTED = 262,
+    NEG = 263
   };
 #endif
 
@@ -67,7 +68,7 @@ union YYSTYPE
   symrec* VAR;
   /* FNCT  */
   symrec* FNCT;
-#line 71 "ccASint.tab.h" /* yacc.c:1909  */
+#line 72 "ccASint.tab.h" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;

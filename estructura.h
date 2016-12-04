@@ -28,6 +28,7 @@ struct init_constants{ // Tipo de datos que se emplearán en la estructura para 
 // Declaración de funciones
 void inicializarTablaSimbolos();
 void destruirTablaSimbolos();
+void liberarNodoTablaSimbolos(symrec **nodo);
 void reiniciarTablaSimbolos();
 void imprimirVariables();
 void imprimirFunciones();

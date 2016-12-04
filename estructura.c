@@ -42,12 +42,23 @@ void inicializarTablaSimbolos(){
 
 // Función para eliminar la tabla de símbolos
 void destruirTablaSimbolos(){
-    printf("Destruir");
+        liberarNodoTablaSimbolos(&sym_table);
+        sym_table=NULL;
+}
+
+// Función para liberar un nodo de la tabla de símbolos
+void liberarNodoTablaSimbolos(symrec **nodo){
+        if ((*nodo)->next!=NULL){
+            liberarNodoTablaSimbolos(&((*nodo)->next));
+        }
+        free((*nodo)->name);
+        free(*nodo);
 }
 
 // Función para reiniciar la tabla de símbolos
 void reiniciarTablaSimbolos(){
-    printf("Reiniciar");
+    destruirTablaSimbolos();
+    inicializarTablaSimbolos();
 }
 
 // Función para imprimir las variables de la tabla de símbolos

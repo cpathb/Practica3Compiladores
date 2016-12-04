@@ -40,7 +40,7 @@ Creación de una calculadora multifunción que permite la interacción en linea 
 
 Esta calculadora soportará:
 - Los operadores matemáticos básicos (+,-,*,/,^).
-- Funciones propias de una calculadora científica (sin(),cos(),tan(),log(),exp(),…).
+- Funciones propias de una calculadora científica (sin(),cos(),tan(),ln(),exp(),…).
 - Identificara "pi" como el numero π y "e" como la constante de Euler.
 - Las operaciones y funciones deberán poder realizarse tanto sobre números enteros como reales.
 

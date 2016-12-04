@@ -446,8 +446,8 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    30,    30,    31,    34,    35,    36,    37,    44,    45,
-      46,    51,    62,    63,    64,    65,    66,    75,    83,    84
+       0,    30,    30,    31,    34,    35,    36,    37,    43,    44,
+      45,    50,    61,    62,    63,    64,    65,    74,    82,    83
 };
 #endif
 
@@ -1247,35 +1247,34 @@ yyreduce:
 #line 37 "ccASint.y" /* yacc.c:1646  */
     { 
          destruirTablaSimbolos(); /* Destruimos la tabla de Simbolos antes de salir */
-         imprimirVariables();
          exit(0); 
     }
-#line 1254 "ccASint.tab.c" /* yacc.c:1646  */
+#line 1253 "ccASint.tab.c" /* yacc.c:1646  */
     break;
 
   case 8:
-#line 44 "ccASint.y" /* yacc.c:1646  */
+#line 43 "ccASint.y" /* yacc.c:1646  */
     { (*(double*)(&yyval)) = (*(double*)(&yyvsp[0])); }
-#line 1260 "ccASint.tab.c" /* yacc.c:1646  */
+#line 1259 "ccASint.tab.c" /* yacc.c:1646  */
     break;
 
   case 9:
-#line 45 "ccASint.y" /* yacc.c:1646  */
+#line 44 "ccASint.y" /* yacc.c:1646  */
     { (*(double*)(&yyval)) = (*(symrec**)(&yyvsp[0]))->value.var; }
-#line 1266 "ccASint.tab.c" /* yacc.c:1646  */
+#line 1265 "ccASint.tab.c" /* yacc.c:1646  */
     break;
 
   case 10:
-#line 46 "ccASint.y" /* yacc.c:1646  */
+#line 45 "ccASint.y" /* yacc.c:1646  */
     {
         printf("ERROR: %s es una palabra reservada.\n", (*(symrec**)(&yyvsp[-2]))->name); /* Cambiar por gestión de errores */
         return 0;
     }
-#line 1275 "ccASint.tab.c" /* yacc.c:1646  */
+#line 1274 "ccASint.tab.c" /* yacc.c:1646  */
     break;
 
   case 11:
-#line 51 "ccASint.y" /* yacc.c:1646  */
+#line 50 "ccASint.y" /* yacc.c:1646  */
     { 
         if((*(symrec**)(&yyvsp[-2]))->constant == 'n'){
             (*(symrec**)(&yyvsp[-2]))->value.var = (*(double*)(&yyvsp[0]));
@@ -1286,35 +1285,35 @@ yyreduce:
             return 0;
         }
     }
-#line 1290 "ccASint.tab.c" /* yacc.c:1646  */
+#line 1289 "ccASint.tab.c" /* yacc.c:1646  */
     break;
 
   case 12:
-#line 62 "ccASint.y" /* yacc.c:1646  */
+#line 61 "ccASint.y" /* yacc.c:1646  */
     { (*(double*)(&yyval)) = (*((*(symrec**)(&yyvsp[-3]))->value.fnctptr))((*(double*)(&yyvsp[-1]))); }
-#line 1296 "ccASint.tab.c" /* yacc.c:1646  */
+#line 1295 "ccASint.tab.c" /* yacc.c:1646  */
     break;
 
   case 13:
-#line 63 "ccASint.y" /* yacc.c:1646  */
+#line 62 "ccASint.y" /* yacc.c:1646  */
     { (*(double*)(&yyval)) = (*(double*)(&yyvsp[-2])) + (*(double*)(&yyvsp[0])); }
-#line 1302 "ccASint.tab.c" /* yacc.c:1646  */
+#line 1301 "ccASint.tab.c" /* yacc.c:1646  */
     break;
 
   case 14:
-#line 64 "ccASint.y" /* yacc.c:1646  */
+#line 63 "ccASint.y" /* yacc.c:1646  */
     { (*(double*)(&yyval)) = (*(double*)(&yyvsp[-2])) - (*(double*)(&yyvsp[0])); }
-#line 1308 "ccASint.tab.c" /* yacc.c:1646  */
+#line 1307 "ccASint.tab.c" /* yacc.c:1646  */
     break;
 
   case 15:
-#line 65 "ccASint.y" /* yacc.c:1646  */
+#line 64 "ccASint.y" /* yacc.c:1646  */
     { (*(double*)(&yyval)) = (*(double*)(&yyvsp[-2])) * (*(double*)(&yyvsp[0])); }
-#line 1314 "ccASint.tab.c" /* yacc.c:1646  */
+#line 1313 "ccASint.tab.c" /* yacc.c:1646  */
     break;
 
   case 16:
-#line 66 "ccASint.y" /* yacc.c:1646  */
+#line 65 "ccASint.y" /* yacc.c:1646  */
     {
         if((*(double*)(&yyvsp[0])) != 0){
             (*(double*)(&yyval)) = (*(double*)(&yyvsp[-2])) / (*(double*)(&yyvsp[0]));
@@ -1324,11 +1323,11 @@ yyreduce:
             return 0;
         }
     }
-#line 1328 "ccASint.tab.c" /* yacc.c:1646  */
+#line 1327 "ccASint.tab.c" /* yacc.c:1646  */
     break;
 
   case 17:
-#line 75 "ccASint.y" /* yacc.c:1646  */
+#line 74 "ccASint.y" /* yacc.c:1646  */
     { 
         if((*(double*)(&yyvsp[0])) != 0){
             (*(double*)(&yyval)) = -(*(double*)(&yyvsp[0]));
@@ -1337,23 +1336,23 @@ yyreduce:
             (*(double*)(&yyval)) = (*(double*)(&yyvsp[0])); 
         }
     }
-#line 1341 "ccASint.tab.c" /* yacc.c:1646  */
+#line 1340 "ccASint.tab.c" /* yacc.c:1646  */
     break;
 
   case 18:
-#line 83 "ccASint.y" /* yacc.c:1646  */
+#line 82 "ccASint.y" /* yacc.c:1646  */
     { (*(double*)(&yyval)) = pow ((*(double*)(&yyvsp[-2])), (*(double*)(&yyvsp[0]))); }
-#line 1347 "ccASint.tab.c" /* yacc.c:1646  */
+#line 1346 "ccASint.tab.c" /* yacc.c:1646  */
     break;
 
   case 19:
-#line 84 "ccASint.y" /* yacc.c:1646  */
+#line 83 "ccASint.y" /* yacc.c:1646  */
     { (*(double*)(&yyval)) = (*(double*)(&yyvsp[-1])); }
-#line 1353 "ccASint.tab.c" /* yacc.c:1646  */
+#line 1352 "ccASint.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 1357 "ccASint.tab.c" /* yacc.c:1646  */
+#line 1356 "ccASint.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1581,10 +1580,9 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 87 "ccASint.y" /* yacc.c:1906  */
+#line 86 "ccASint.y" /* yacc.c:1906  */
 
 
 void yyerror(char *s){ /* Función de error personalizada */
     printf("%s\n", s);
-    exit(1); /* Si se encuentra un error se sale del programa */
 }

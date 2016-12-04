@@ -36,7 +36,6 @@ line: '\n'
     | exp ';' '\n'  { printf("\t%.10g\n",$1); }
     | EXIT '\n'     { 
          destruirTablaSimbolos(); /* Destruimos la tabla de Simbolos antes de salir */
-         imprimirVariables();
          exit(0); 
     }
 ;
@@ -88,5 +87,4 @@ exp: NUM                 { $$ = $1; }
 
 void yyerror(char *s){ /* Función de error personalizada */
     printf("%s\n", s);
-    exit(1); /* Si se encuentra un error se sale del programa */
 }

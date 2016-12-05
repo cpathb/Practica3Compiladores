@@ -550,16 +550,17 @@ char *yytext;
     // Función para imprimir la ayuda
     void ayuda(){
         printf("*******************************AYUDA:*********************************\n");
+        printf("Existen dos maneras de dar órdenes a la calculadora:\n   - Con punto y coma (muestra el resultado) -> a=2+3;\n   - Sin punto y coma (no muestra el resultado) -> a=2+3\n");
         printf("******************************COMANDOS********************************\n");
         printf("help\nHELP\n\t/*Función que muestra la ayuda por pantalla.*/\nload ruta\nLOAD ruta\n\t/*Función que carga un fichero y lo ejecuta en el programa.*/\nvars\nVARS\n\t/*Función que muestra las variables de la tabla de símbolos./*\nfuncs\nFUNCS\n\t/*Función que muestra las funciones de la tabla de símbolos.*/\nreset\nRESET\n\t/*Función que reinicia la tabla de símbolos a sus valores por defecto.*/\nexit\nEXIT\n\t/*Función que ciera el programa.*/\n");
         printf("*****************************OPERADORES*******************************\n");
-        printf("+\n\t/*Operador Suma*/\n-\n\t/*Operador Resta*/\n*\n\t/*Operador Producto*/\n/\n\t/*Operador División*/\n^\n\t/*Operador Exponenciación*/\n=\n\t/*Operador Asignación*/\n");
+        printf("+\n\t/*Operador Suma*/ -> a + a\n-\n\t/*Operador Resta*/ -> a - a\n*\n\t/*Operador Producto*/ -> a * a\n/\n\t/*Operador División*/ -> a * a\n^\n\t/*Operador Exponenciación*/ -> a ^ a\n=\n\t/*Operador Asignación*/  -> a = a\n");
         printf("**********************************************************************\n\n");
     }
 
     symrec *s;
     
-#line 563 "lex.yy.c"
+#line 564 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -777,10 +778,10 @@ YY_DECL
 		}
 
 	{
-#line 40 "ccALex.l"
+#line 41 "ccALex.l"
 
 
-#line 784 "lex.yy.c"
+#line 785 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -839,7 +840,7 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 42 "ccALex.l"
+#line 43 "ccALex.l"
 /* Comando de ayuda */ {
     ayuda();
     BEGIN(INITIAL);
@@ -847,7 +848,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 47 "ccALex.l"
+#line 48 "ccALex.l"
 /* Comando de carga de fichero */ {
     FILE* fp = fopen(yytext+5, "r+"); /* Leemos el fichero */
     if(!fp){ /* Comprobamos la incorrecta apertura del fichero */
@@ -862,7 +863,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 59 "ccALex.l"
+#line 60 "ccALex.l"
 /* Función para mostrar las variables de la tabla de símbolo */ {
     reiniciarTablaSimbolos();
     BEGIN(INITIAL);
@@ -870,7 +871,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 64 "ccALex.l"
+#line 65 "ccALex.l"
 /* Función para salir del programa */ {
     printf("Hasta pronto amigo!!\n");
     BEGIN(INITIAL);
@@ -879,7 +880,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 70 "ccALex.l"
+#line 71 "ccALex.l"
 /* Función para mostrar las variables de la tabla de símbolo */ {
     imprimirFunciones();
     BEGIN(INITIAL);
@@ -887,7 +888,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 75 "ccALex.l"
+#line 76 "ccALex.l"
 /* Función para mostrar las variables de la tabla de símbolo */ {
     imprimirVariables();
     BEGIN(INITIAL);
@@ -895,7 +896,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 80 "ccALex.l"
+#line 81 "ccALex.l"
 /* Funciónes aritméticas */ {
     s = getsym(yytext); /* Intentamos obtener de la tabla de símbolos la variable */
     yylval.FNCT = s; /* Introducimos el valor*/
@@ -904,7 +905,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 86 "ccALex.l"
+#line 87 "ccALex.l"
 /* Enteros */ {
     yylval.NUM = atof(yytext);
     return NUM;
@@ -913,7 +914,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 92 "ccALex.l"
+#line 93 "ccALex.l"
 /* Científico */ {
     yylval.NUM = atof(yytext);
     return NUM;
@@ -921,7 +922,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 97 "ccALex.l"
+#line 98 "ccALex.l"
 /* Decimal */ {
     yylval.NUM = atof(yytext);
     return NUM;
@@ -929,7 +930,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 102 "ccALex.l"
+#line 103 "ccALex.l"
 /* Decimal Científico */ {
     yylval.NUM = atof(yytext);
     return NUM;
@@ -937,7 +938,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 107 "ccALex.l"
+#line 108 "ccALex.l"
 /* Identificador */ {
     s = getsym(yytext); /* Intentamos obtener de la tabla de símbolos la variable */
     if(s == 0){ /* Si no está en la tabla... */
@@ -949,17 +950,17 @@ YY_RULE_SETUP
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 116 "ccALex.l"
+#line 117 "ccALex.l"
 /*TOKEN Simple*/ return yytext[0] ;
 	YY_BREAK
 case 14:
 /* rule 14 can match eol */
 YY_RULE_SETUP
-#line 118 "ccALex.l"
+#line 119 "ccALex.l"
 /* Salto de linea */ return '\n';
 	YY_BREAK
 case YY_STATE_EOF(INITIAL):
-#line 119 "ccALex.l"
+#line 120 "ccALex.l"
 {
     fclose(yyin);
     yyin=stdin;
@@ -970,15 +971,15 @@ case YY_STATE_EOF(INITIAL):
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 126 "ccALex.l"
+#line 127 "ccALex.l"
 /* Simbolos que no se tienen que contemplar */
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 127 "ccALex.l"
+#line 128 "ccALex.l"
 ECHO;
 	YY_BREAK
-#line 982 "lex.yy.c"
+#line 983 "lex.yy.c"
 
 	case YY_END_OF_BUFFER:
 		{
@@ -1977,6 +1978,6 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 127 "ccALex.l"
+#line 128 "ccALex.l"
 
 

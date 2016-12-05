@@ -35,6 +35,7 @@ input:  /* cadena vacia */
 line: '\n'
     | exp '\n'
     | exp ';' '\n'  { printf("\t%.10g\n",$1); }
+    | error '\n'    { yyerrok;                }
     | EXIT '\n'     { 
          destruirTablaSimbolos(); /* Destruimos la tabla de Simbolos antes de salir */
          exit(0); 

@@ -5,6 +5,7 @@
 #include "estructura.h"
 #include "ccASint.tab.h"
 
+// Estrutura para cargar las funciones al inicio del programa
 struct init_functions const arith_functions[] ={
     { "sin",  sin   },
     { "cos",  cos   },
@@ -18,6 +19,7 @@ struct init_functions const arith_functions[] ={
     { 0,      0     },
 };
 
+// Estrutura para cargar las constantes al inicio del programa
 struct init_constants const math_constants[] ={
     { "pi", M_PI    },
     { "e" ,  M_E    },

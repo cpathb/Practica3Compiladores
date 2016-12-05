@@ -43,10 +43,17 @@ Esta calculadora soportará:
 - Funciones propias de una calculadora científica (sin(),cos(),tan(),ln(),exp(),…).
 - Identificara "pi" como el numero π y "e" como la constante de Euler.
 - Las operaciones y funciones deberán poder realizarse tanto sobre números enteros como reales.
+- Dos modos de ejecutar las órdenes (con y sin ;).
+- Cargar ficheros con órdenes.
+- Un comando para mostrar la ayuda.
+- Un comando para mostrar las variables de la calculadora.
+- Un comando para mostrar las funciones de la calculadora.
+- Un comando para borrar las variables de la calculadora. 
+- Un comando para salir de la calculadora.
 
 Para la realización de esta calculadora multifunción se ha decidido que se realizará una etapa de análisis léxico empleando **[flex](https://github.com/westes/flex)** y una etapa de análisis sintáctico empleando **[bison](https://www.gnu.org/software/bison/)**. En la etapa de análisis sintáctico es necesario añadirle aquellas acciones semánticas que permitan realizar las operaciones descritas.
 
-Por último, para almacenar las variables que introducimos por teclado o leemos desde el fichero y los valores que toman a lo largo del cálculo, emplearemos una especie de tabla de símbolos extraida de un ejemplo del manual de bison, aunque se le han añadido algunas pequeñas modificaciones.
+Por último, para almacenar las variables que introducimos por teclado o leemos desde el fichero y los valores que toman a lo largo del cálculo, emplearemos una especie de tabla de símbolos extraida de un ejemplo del manual de bison, aunque se le han añadido algunas pequeñas modificaciones, tanto en los .datos que almacena como en funcionalidades.
 
 <br>
 <br>
@@ -78,8 +85,6 @@ Para garantizar la correcta compilación de la práctica, se ruega que una vez d
 <br>
 <br>
 <br>
-
-
 
 ##### **Compilación de los ficheros de fuente del programa**
 > gcc main.c ccASint.tab.c estructura.c gestionErrores.c -lm -lfl -o practica3.out

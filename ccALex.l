@@ -6,10 +6,11 @@
     // Función para imprimir la ayuda
     void ayuda(){
         printf("*******************************AYUDA:*********************************\n");
+        printf("Existen dos maneras de dar órdenes a la calculadora:\n   - Con punto y coma (muestra el resultado) -> a=2+3;\n   - Sin punto y coma (no muestra el resultado) -> a=2+3\n\nPara ejecutar una función soportada se usará por ejemplo:\n   sin(a)\n");
         printf("******************************COMANDOS********************************\n");
-        printf("help\nHELP\n\t/*Función que muestra la ayuda por pantalla.*/\nload ruta\nLOAD ruta\n\t/*Función que carga un fichero y lo ejecuta en el programa.*/\nvars\nVARS\n\t/*Función que muestra las variables de la tabla de símbolos./*\nfuncs\nFUNCS\n\t/*Función que muestra las funciones de la tabla de símbolos.*/\nreset\nRESET\n\t/*Función que reinicia la tabla de símbolos a sus valores por defecto.*/\nexit\nEXIT\n\t/*Función que ciera el programa.*/\n");
+        printf("help\nHELP\n\t/*Función que muestra la ayuda por pantalla.*/\nload ruta\nLOAD ruta\n\t/*Función que carga un fichero y lo ejecuta en el programa.*/\nvars\nVARS\n\t/*Función que muestra las variables de la tabla de símbolos./*\nfuncs\nFUNCS\n\t/*Función que muestra las funciones de la tabla de símbolos.*/\nreset\nRESET\n\t/*Función que borra las variables de la calculadora.*/\nexit\nEXIT\n\t/*Función que ciera el programa.*/\n");
         printf("*****************************OPERADORES*******************************\n");
-        printf("+\n\t/*Operador Suma*/\n-\n\t/*Operador Resta*/\n*\n\t/*Operador Producto*/\n/\n\t/*Operador División*/\n^\n\t/*Operador Exponenciación*/\n=\n\t/*Operador Asignación*/\n");
+        printf("+\n\t/*Operador Suma*/ -> a + a\n-\n\t/*Operador Resta*/ -> a - a\n*\n\t/*Operador Producto*/ -> a * a\n/\n\t/*Operador División*/ -> a * a\n^\n\t/*Operador Exponenciación*/ -> a ^ a\n=\n\t/*Operador Asignación*/  -> a = a\n");
         printf("**********************************************************************\n\n");
     }
 

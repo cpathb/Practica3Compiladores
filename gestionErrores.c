@@ -25,6 +25,6 @@ void imprimirError(int codigo, char* cadena){
             break;
 
          default:
-            printf("Errorno controlado.\n");
+            printf("Error no controlado.\n");
      }
 }

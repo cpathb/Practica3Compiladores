@@ -1,0 +1,1 @@
+void imprimirError(int codigo, char* cadena);

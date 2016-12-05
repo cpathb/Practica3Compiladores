@@ -1,6 +1,7 @@
 %{
     #include "estructura.h"
     #include "ccASint.tab.h"
+    #include "gestionErrores.h"
     
     // Función para imprimir la ayuda
     void ayuda(){
@@ -46,12 +47,11 @@ FUNCIONES           "sin"|"cos"|"tan"|"asin"|"acos"|"atan"|"ln"|"sqrt"
 {CARGA}{RUTA} /* Comando de carga de fichero */ {
     FILE* fp = fopen(yytext+5, "r+"); /* Leemos el fichero */
     if(!fp){ /* Comprobamos la incorrecta apertura del fichero */
-        printf("Error cargando el fichero\n"); /* Cambiar por gestion errores */
+        imprimirError(1, yytext+5);
         yyin=stdin; /* Ponemos como entrada por defecto la entrada del sistema */
     }
     else{
         yyin = fp; /* Ponemos como entrada por defecto el fichero proporcionado */
-        printf("Fichero cargado: %s\n", yytext+5); /* Pasamos el fichero indicado */
     }
     BEGIN(INITIAL);
 }
@@ -121,7 +121,7 @@ FUNCIONES           "sin"|"cos"|"tan"|"asin"|"acos"|"atan"|"ln"|"sqrt"
     yyin=stdin;
     yyrestart(yyin);
     BEGIN(INITIAL);
-    return '\n';
+    return '\n'; /* Necesario para que funcion la lectura de lectura de archivo */
 }
 [ \t\r\b\f] /* Simbolos que no se tienen que contemplar */
 %%

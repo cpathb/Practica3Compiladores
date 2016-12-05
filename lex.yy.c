@@ -545,6 +545,7 @@ char *yytext;
 #line 2 "ccALex.l"
     #include "estructura.h"
     #include "ccASint.tab.h"
+    #include "gestionErrores.h"
     
     // Función para imprimir la ayuda
     void ayuda(){
@@ -558,7 +559,7 @@ char *yytext;
 
     symrec *s;
     
-#line 562 "lex.yy.c"
+#line 563 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -776,10 +777,10 @@ YY_DECL
 		}
 
 	{
-#line 39 "ccALex.l"
+#line 40 "ccALex.l"
 
 
-#line 783 "lex.yy.c"
+#line 784 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -838,7 +839,7 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 41 "ccALex.l"
+#line 42 "ccALex.l"
 /* Comando de ayuda */ {
     ayuda();
     BEGIN(INITIAL);
@@ -846,16 +847,15 @@ YY_RULE_SETUP
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 46 "ccALex.l"
+#line 47 "ccALex.l"
 /* Comando de carga de fichero */ {
     FILE* fp = fopen(yytext+5, "r+"); /* Leemos el fichero */
     if(!fp){ /* Comprobamos la incorrecta apertura del fichero */
-        printf("Error cargando el fichero\n"); /* Cambiar por gestion errores */
+        imprimirError(1, yytext+5);
         yyin=stdin; /* Ponemos como entrada por defecto la entrada del sistema */
     }
     else{
         yyin = fp; /* Ponemos como entrada por defecto el fichero proporcionado */
-        printf("Fichero cargado: %s\n", yytext+5); /* Pasamos el fichero indicado */
     }
     BEGIN(INITIAL);
 }
@@ -965,7 +965,7 @@ case YY_STATE_EOF(INITIAL):
     yyin=stdin;
     yyrestart(yyin);
     BEGIN(INITIAL);
-    return '\n';
+    return '\n'; /* Necesario para que funcion la lectura de lectura de archivo */
 }
 	YY_BREAK
 case 15:

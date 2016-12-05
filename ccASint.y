@@ -4,6 +4,7 @@
     #include <stdlib.h>
     #include <math.h>
     #include "estructura.h"
+    #include "gestionErrores.h"
 
     int yylex();
     void yyerror(char *s);
@@ -43,7 +44,7 @@ line: '\n'
 exp: NUM                 { $$ = $1; }
     | VAR                { $$ = $1->value.var; }
     | FNCT '=' exp       {
-        printf("ERROR: %s es una palabra reservada.\n", $1->name); /* Cambiar por gestión de errores */
+        imprimirError(2,$1->name);
         return 0;
     }
 
@@ -53,7 +54,7 @@ exp: NUM                 { $$ = $1; }
             $$ = $3;
         }
         else{
-            printf("ERROR: %s es una constante, no se puede modificar.\n", $1->name); /* Cambiar por gestión de errores */
+            imprimirError(3,$1->name);
             return 0;
         }
     }
@@ -67,7 +68,7 @@ exp: NUM                 { $$ = $1; }
             $$ = $1 / $3;
         }
         else{
-            printf("ERROR: División entre 0.\n"); /* Cambiar por gestión de errores */
+            imprimirError(4,"");
             return 0;
         }
     }
@@ -86,5 +87,5 @@ exp: NUM                 { $$ = $1; }
 %%
 
 void yyerror(char *s){ /* Función de error personalizada */
-    printf("%s\n", s);
+    imprimirError(5, s);
 }

@@ -82,7 +82,7 @@ Para garantizar la correcta compilación de la práctica, se ruega que una vez d
 
 
 ##### **Compilación de los ficheros de fuente del programa**
-> gcc main.c ccASint.tab.c estructura.c -lm -lfl -o practica3.out
+> gcc main.c ccASint.tab.c estructura.c gestionErrores.c -lm -lfl -o practica3.out
 
 <br>
 <br>

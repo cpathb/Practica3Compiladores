@@ -15,16 +15,6 @@ typedef struct symrec symrec;
 
 extern symrec *sym_table;
 
-struct init_functions{ // Tipo de datos que se emplearán en la estructura para las funciones 
-    char const *function_name;
-    double (*fnct) (double);
-};
-
-struct init_constants{ // Tipo de datos que se emplearán en la estructura para las constantes
-    char const *constant_name;
-    double value;
-};
-
 // Declaración de funciones
 void inicializarTablaSimbolos();
 void destruirTablaSimbolos();

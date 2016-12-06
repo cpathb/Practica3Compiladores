@@ -3,28 +3,8 @@
 #include <math.h>
 #include <string.h>
 #include "estructura.h"
+#include "default.h"
 #include "ccASint.tab.h"
-
-// Estrutura para cargar las funciones al inicio del programa
-struct init_functions const arith_functions[] ={
-    { "sin",  sin   },
-    { "cos",  cos   },
-    { "tan",  tan   },
-    { "asin", asin  },
-    { "acos", acos  },
-    { "atan", atan  },
-    { "exp",  exp   },
-    { "ln",   log   },
-    { "sqrt", sqrt  },
-    { 0,      0     },
-};
-
-// Estrutura para cargar las constantes al inicio del programa
-struct init_constants const math_constants[] ={
-    { "pi", M_PI    },
-    { "e" ,  M_E    },
-    { 0   ,    0    },
-};
 
 symrec *sym_table;
 

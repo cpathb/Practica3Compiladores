@@ -36,7 +36,6 @@ SALIR               "exit"|"EXIT"
 VARIABLE            "vars"|"VARS"
 FUNCION             "funcs"|"FUNCS"
 REINICIAR           "reset"|"RESET"
-FUNCIONES           "sin"|"cos"|"tan"|"asin"|"acos"|"atan"|"ln"|"sqrt"
 
 %%
 
@@ -78,12 +77,6 @@ FUNCIONES           "sin"|"cos"|"tan"|"asin"|"acos"|"atan"|"ln"|"sqrt"
     BEGIN(INITIAL);
 }
 
-{FUNCIONES} /* Funciónes aritméticas */ {
-    s = getsym(yytext); /* Intentamos obtener de la tabla de símbolos la variable */
-    yylval.FNCT = s; /* Introducimos el valor*/
-    return s->type;
-}
-
 {ENTERO} /* Enteros */ {
     yylval.NUM = atof(yytext);
     return NUM;
@@ -106,11 +99,16 @@ FUNCIONES           "sin"|"cos"|"tan"|"asin"|"acos"|"atan"|"ln"|"sqrt"
 }
 
 {IDENTIFICADOR} /* Identificador */ {
-    s = getsym(yytext); /* Intentamos obtener de la tabla de símbolos la variable */
-    if(s == 0){ /* Si no está en la tabla... */
+    s = getsym(yytext); /* Intentamos obtener de la tabla de símbolos la variable/funcion/consrtante */
+    if(s == 0){ /* Si no está en la tabla es una variable */
         s = putsym(yytext, VAR, 'n'); /* Introducimos la variable en la tabla de símbolos*/
     }
-    yylval.VAR = s; /* Introducimos el valor*/
+    if(s->type==VAR){ /* Constante o variable */
+        yylval.VAR = s; /* Introducimos el valor*/
+    }
+    else{ /* Función */
+        yylval.FNCT = s; /* Introducimos el valor*/
+    }
     return s->type;
 }
 
@@ -122,7 +120,7 @@ FUNCIONES           "sin"|"cos"|"tan"|"asin"|"acos"|"atan"|"ln"|"sqrt"
     yyin=stdin;
     yyrestart(yyin);
     BEGIN(INITIAL);
-    return '\n'; /* Necesario para que funcion la lectura de lectura de archivo */
+    return '\n'; /* Necesario para que funcione la lectura de lectura de archivo, sino si no acaba el archivo con un salto de línea "Kaboom" */
 }
 [ \t\r\b\f] /* Simbolos que no se tienen que contemplar */
 %%
